@@ -864,9 +864,7 @@ services:
   selenium:
     image: selenium/standalone-firefox:2.53.1-beryllium
     environment:
-      # Reduce default log level for Selenium server (INFO) as it is too
-      # verbose.
-      - JAVA_OPTS=-Dselenium.LOGGER.level=WARNING
+      - JAVA_OPTS=-Dselenium.LOGGER.level=FINEST
     when:
       matrix:
         TESTS: acceptance
