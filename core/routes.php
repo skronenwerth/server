@@ -149,8 +149,3 @@ $this->create('files_sharing.publicpreview.directLink', '/s/{token}/preview')->g
 		throw new \OC\HintException('App file sharing is not enabled');
 	}
 });
-
-// used for heartbeat
-$this->create('heartbeat', '/heartbeat')->action(function(){
-	// do nothing
-});
