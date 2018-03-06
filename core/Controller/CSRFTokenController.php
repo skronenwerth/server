@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * @copyright 2017 Christoph Wurst <christoph@winzerhof-wurst.at>
@@ -34,7 +35,12 @@ class CSRFTokenController extends Controller {
 	/** @var CsrfTokenManager */
 	private $tokenManager;
 
-	public function __construct($appName, IRequest $request,
+	/**
+	 * @param string $appName
+	 * @param IRequest $request
+	 * @param CsrfTokenManager $tokenManager
+	 */
+	public function __construct(string $appName, IRequest $request,
 		CsrfTokenManager $tokenManager) {
 		parent::__construct($appName, $request);
 		$this->tokenManager = $tokenManager;
@@ -43,9 +49,10 @@ class CSRFTokenController extends Controller {
 	/**
 	 * @NoAdminRequired
 	 * @NoCSRFRequired
+	 * @PublicPage
 	 * @return JSONResponse
 	 */
-	public function index() {
+	public function index(): JSONResponse {
 		$requestToken = $this->tokenManager->getToken();
 
 		return new JSONResponse([
